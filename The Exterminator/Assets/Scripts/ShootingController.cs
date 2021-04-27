@@ -8,14 +8,16 @@ public class ShootingController : MonoBehaviour
     public GameObject airParticleObj;
     public GameObject poisonParticleObj;
     public Camera SceneCamera;
-    
+    public Vector3 dir;
+    public bool air = false;
+    public bool poison = false;
+
     // Private
     private ParticleSystem airParticle;
     private ParticleSystem poisonParticle;
     private Vector3 mousePos;
     private bool confined = true;
-    private bool air = false;
-    private bool poison = false;
+    private float angle;
 
     void Start()
     {
@@ -75,14 +77,13 @@ public class ShootingController : MonoBehaviour
     }
 
     void RotateEmission(){
-        var dir = new Vector3(mousePos.x, mousePos.y, 0) - transform.position;
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        dir = new Vector3(mousePos.x, mousePos.y, 0) - transform.position;
+        angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         airParticle.transform.rotation = Quaternion.Euler(0, 0, angle);
         poisonParticle.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     void OnGUI(){
 		mousePos = SceneCamera.ScreenToWorldPoint(Input.mousePosition);
-		// mousePosLocal  = (mousePosWorld - transform.position);
 	}
 }
