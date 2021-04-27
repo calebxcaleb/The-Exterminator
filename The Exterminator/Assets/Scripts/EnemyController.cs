@@ -6,9 +6,9 @@ public class EnemyController : MonoBehaviour
 {
 
     // public
-    public GameObject player;
 
     // private
+    private GameObject player;
     private Rigidbody2D rb;
     private float force = 15.0f;
     private bool air = false;
@@ -16,7 +16,9 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        this.GetComponent<DisableObject>().enabled = false;
         rb = this.GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player");
     }
 
     void Update()
@@ -39,7 +41,11 @@ public class EnemyController : MonoBehaviour
             }
 
             if (player.GetComponent<ShootingController>().poison){
+                Destroy(this.GetComponent<Animator>());
                 this.transform.DetachChildren();
+                this.transform.gameObject.layer = 10;
+                this.GetComponent<DisableObject>().enabled = true;
+                Destroy(this.GetComponent<EnemyController>());
             }
 
         }
