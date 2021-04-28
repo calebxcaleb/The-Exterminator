@@ -19,5 +19,15 @@ public class DisableObject : MonoBehaviour
         Destroy(this.GetComponent<BoxCollider2D>());
         Destroy(this.GetComponent<Rigidbody2D>());
         Destroy(this.GetComponent<DisableObject>());
+        if (this.GetComponent<SpriteRenderer>() != null){
+            Color newCol = this.GetComponent<SpriteRenderer>().color;
+            newCol.a = 0.5f;
+            this.GetComponent<SpriteRenderer>().color = newCol;
+        }
+        else if (this.GetComponentInChildren<SpriteRenderer>() != null){
+            Color newCol = this.GetComponentInChildren<SpriteRenderer>().color;
+            newCol.a = 0.5f;
+            this.GetComponentInChildren<SpriteRenderer>().color = newCol;
+        }
     }
 }

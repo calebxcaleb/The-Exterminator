@@ -405,8 +405,9 @@ GameObject:
   - component: {fileID: 1804050876100007953}
   - component: {fileID: 5751518047399128902}
   - component: {fileID: 8878199872284928899}
-  - component: {fileID: 5762478282879210040}
   - component: {fileID: 7124944229002089357}
+  - component: {fileID: 5762478282879210040}
+  - component: {fileID: 8547406811625831297}
   - component: {fileID: 9200720779232884747}
   m_Layer: 8
   m_Name: Bad guy
@@ -475,7 +476,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -5232295137237547964, guid: 36c26adc5a227f6439dd65a6b8c78ebf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -534,18 +535,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5762478282879210040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804050876100007952}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3774b978dd0c22140b2597aa0d81ee5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7124944229002089357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +547,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e8537742634f047b4125fb94668dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5762478282879210040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804050876100007952}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3774b978dd0c22140b2597aa0d81ee5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8547406811625831297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804050876100007952}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77875d5c640d2446ac7cb30ecd4d957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 3
+  eggs: {fileID: 5471752755213609471, guid: 85efd92c1a71bff47b41bdef13edd83c, type: 3}
 --- !u!95 &9200720779232884747
 Animator:
   serializedVersion: 3
@@ -909,7 +924,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 653e1f71548ab294aa41e2deb4c33ccf, type: 3}
   m_Color: {r: 0.4811321, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -1122,7 +1137,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 653e1f71548ab294aa41e2deb4c33ccf, type: 3}
   m_Color: {r: 0.4811321, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -1204,7 +1219,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 653e1f71548ab294aa41e2deb4c33ccf, type: 3}
   m_Color: {r: 0.4811321, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -1286,7 +1301,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 653e1f71548ab294aa41e2deb4c33ccf, type: 3}
   m_Color: {r: 0.4811321, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -1368,7 +1383,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 653e1f71548ab294aa41e2deb4c33ccf, type: 3}
   m_Color: {r: 0.4811321, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -1450,7 +1465,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 653e1f71548ab294aa41e2deb4c33ccf, type: 3}
   m_Color: {r: 0.4811321, g: 0, b: 0, a: 1}
   m_FlipX: 0
