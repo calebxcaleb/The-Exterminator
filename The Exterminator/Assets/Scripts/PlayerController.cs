@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Public
+    public GameObject prevPoint;
 
+    // Private
     private Rigidbody2D rb;
     public float speed = 10.0f;
 
@@ -27,5 +30,11 @@ public class PlayerController : MonoBehaviour
 
 		rb.velocity = new Vector2(direction.x * speed, direction.y * speed);
 	}
+
+    void OnTriggerStay2D(Collider2D col){
+        if (col.tag == "point"){
+            prevPoint = col.gameObject;
+        }
+    }
 
 }

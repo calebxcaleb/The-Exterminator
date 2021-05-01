@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     // public
     [Range(1, 5)]
     public int size = 3;
+    public bool damage = false;
 
     // private
     private GameObject player;
@@ -34,7 +35,7 @@ public class EnemyController : MonoBehaviour
         for(int i = 0; i < Body.transform.childCount; i++) {
             GameObject leg = Body.transform.GetChild(i).gameObject;
             if (leg.tag == "leg"){
-                leg.GetComponent<Rigidbody2D>().mass = ((float[])sizes[size])[1];
+                leg.GetComponent<DetachLeg>().mass = ((float[])sizes[size])[1];
             }
         }
         this.GetComponent<LayEgg>().enabled = false;
@@ -48,45 +49,18 @@ public class EnemyController : MonoBehaviour
         MoveEnemy();
     }
 
-	void explode(){
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, 5f);
-        foreach (Collider2D hit in colliders) {
-            Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
-            if (rb != null){
-		        var dir = rb.transform.position - this.transform.position;
-				rb.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-		        rb.AddForce(dir.normalized * 200.0f * rb.mass);
-			}
-		}
-	}
-
     void MoveEnemy(){
         if (airParticle){
+            this.GetComponent<EnemyPathFinder>().stop = true;
             Vector3 dir3 = player.GetComponent<ShootingController>().dir;
             Vector2 dir2 = new Vector2(dir3.x * force, dir3.y * force);
             rb.AddForce(dir2);
         }
-        if (poisonParticle){
-            Destroy(this.GetComponent<Animator>());
-            changeSpriteLayer();
-            this.transform.GetChild(0).transform.DetachChildren();
-            explode();
-            this.transform.gameObject.layer = 10;
-            this.GetComponent<LayEgg>().enabled = true;
-            this.GetComponent<DisableObject>().enabled = true;
-            Destroy(this.GetComponent<EnemyController>());
+        else{
+            this.GetComponent<EnemyPathFinder>().stop = false;
         }
-    }
-
-    void changeSpriteLayer(){
-        GameObject Body = this.transform.GetChild(0).gameObject;
-        Body.GetComponent<SpriteRenderer>().sortingOrder = 0;
-        for(int i = 0; i < Body.transform.childCount; i++) {
-            GameObject bodyPart = Body.transform.GetChild(i).gameObject;
-            if (bodyPart.tag == "leg"){
-                bodyPart.GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
-            }
-        }
+        
+        damage = poisonParticle;
     }
 
     void OnTriggerStay2D(Collider2D col){

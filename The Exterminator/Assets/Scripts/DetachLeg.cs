@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class DetachLeg : MonoBehaviour
 {
+    // Public
+    public float mass;
+
     void Start()
     {
-        this.GetComponent<DisableObject>().enabled = false;
+
     }
 
     void Update()
     {
-        if (this.transform.parent == null){
-            Destroy(this.GetComponent<HingeJoint2D>());
-            this.GetComponent<BoxCollider2D>().isTrigger = false;
-            this.GetComponent<DisableObject>().enabled = true;
-            Destroy(this.GetComponent<DetachLeg>());
-        }
+
+    }
+
+    public void detatch(){
+        Rigidbody2D rb = this.gameObject.AddComponent<Rigidbody2D>();
+        rb.mass = mass;
+        rb.drag = 10;
+        rb.angularDrag = 0.1f;
+        rb.gravityScale = 0;
+        this.GetComponent<BoxCollider2D>().isTrigger = false;
+        this.GetComponent<DisableObject>().enabled = true;
+        this.gameObject.layer = 8;
+    }
+
+    public void delete(){
+        this.gameObject.layer = 2;
+        Destroy(this.GetComponent<DetachLeg>());
     }
 }

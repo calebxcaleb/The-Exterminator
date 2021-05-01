@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DisableObject : MonoBehaviour
 {
+    // public
+    public int time;
+
     void Start()
     {
         StartCoroutine(Delay());
@@ -15,7 +18,7 @@ public class DisableObject : MonoBehaviour
     }
 
     IEnumerator Delay(){
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(time);
         Destroy(this.GetComponent<BoxCollider2D>());
         Destroy(this.GetComponent<Rigidbody2D>());
         Destroy(this.GetComponent<DisableObject>());
