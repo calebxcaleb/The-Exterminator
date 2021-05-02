@@ -51,7 +51,8 @@ public class EnemyPathFinder : MonoBehaviour
             point.GetComponent<PathPointers>().Point12.Add(point1);
             point.GetComponent<PathPointers>().Point12.Add(point2);
 
-            RaycastHit2D rayToPoint = Physics2D.Raycast(this.transform.position, point.transform.position - this.transform.position);
+            LayerMask mask = LayerMask.GetMask("Default");
+            RaycastHit2D rayToPoint = Physics2D.Raycast(this.transform.position, point.transform.position - this.transform.position, Mathf.Infinity, mask);
             if (Mathf.Abs((point.transform.position - this.transform.position).magnitude) < 
                 Mathf.Abs((rayToPoint.transform.position - this.transform.position).magnitude)){
                 tempPoint = point;
@@ -62,12 +63,13 @@ public class EnemyPathFinder : MonoBehaviour
     }
 
     void FindPlayer(){
-        RaycastHit2D rayToPlayer = Physics2D.Raycast(this.transform.position, player.transform.position - this.transform.position);
+        LayerMask mask = LayerMask.GetMask("Default", "Player");
+        RaycastHit2D rayToPlayer = Physics2D.Raycast(this.transform.position, player.transform.position - this.transform.position, Mathf.Infinity, mask);
         if (rayToPlayer.transform.gameObject.tag == "Player"){
             color = Color.green;
             this.transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
             find = false;
-        }else{
+        }else if (!find){
             color = Color.red;
             FindInitialPoint();
             find = true;
@@ -88,7 +90,8 @@ public class EnemyPathFinder : MonoBehaviour
 
         if (0 <= pointObjs.IndexOf(tempPoint) + adder && pointObjs.IndexOf(tempPoint) + adder <= points.transform.childCount - 1){
             GameObject checkPoint = points.transform.GetChild(pointObjs.IndexOf(tempPoint) + adder).gameObject;
-            RaycastHit2D rayToPoint = Physics2D.Raycast(this.transform.position, checkPoint.transform.position - this.transform.position);
+            LayerMask mask = LayerMask.GetMask("Default");
+            RaycastHit2D rayToPoint = Physics2D.Raycast(this.transform.position, checkPoint.transform.position - this.transform.position, Mathf.Infinity, mask);
             if (Mathf.Abs((checkPoint.transform.position - this.transform.position).magnitude) < 
                 Mathf.Abs((rayToPoint.transform.position - this.transform.position).magnitude)){
                     nextPoint = checkPoint;

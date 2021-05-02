@@ -9,16 +9,33 @@ public class PlayerController : MonoBehaviour
 
     // Private
     private Rigidbody2D rb;
+    private GameObject points;
     public float speed = 10.0f;
 
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        points = GameObject.Find("Points");
+        getStartPoint();
     }
 
     void Update()
     {
         Control();
+    }
+
+    void getStartPoint(){
+        for (int i = 0; i < points.transform.childCount; i++){
+            GameObject point = points.transform.GetChild(i).gameObject;
+
+            LayerMask mask = LayerMask.GetMask("Enemy");
+            RaycastHit2D rayToPoint = Physics2D.Raycast(this.transform.position, point.transform.position - this.transform.position, mask);
+            if (Mathf.Abs((point.transform.position - this.transform.position).magnitude) < 
+                Mathf.Abs((rayToPoint.transform.position - this.transform.position).magnitude)){
+                prevPoint = point;
+                break;
+            }
+        }
     }
 
 	void Control(){

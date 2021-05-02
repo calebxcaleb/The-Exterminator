@@ -41,7 +41,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4969184170673788441}
   - component: {fileID: 522545604677480345}
   - component: {fileID: 4543899928506088479}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point
   m_TagString: point
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
