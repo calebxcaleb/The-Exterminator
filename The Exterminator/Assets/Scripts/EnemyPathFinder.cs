@@ -68,6 +68,9 @@ public class EnemyPathFinder : MonoBehaviour
         if (rayToPlayer.transform.gameObject.tag == "Player"){
             color = Color.green;
             this.transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+            var dir = player.transform.position - this.transform.position;
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             find = false;
         }else if (!find){
             color = Color.red;
@@ -103,6 +106,9 @@ public class EnemyPathFinder : MonoBehaviour
     void FollowPlayer(){
         if (find){
             this.transform.position = Vector2.MoveTowards(this.transform.position, nextPoint.transform.position, speed * Time.deltaTime);
+            var dir = nextPoint.transform.position - this.transform.position;
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
 
